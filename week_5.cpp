@@ -3,59 +3,32 @@
 #include <string>
 #include <assert.h>
 
-template <typename T>
 struct d_t
 {
-    T x;
-    d_t<T> * next{nullptr};
+    // поле для хранения данных одного узла списка:
+    int x{0};
+    // ссылка на следующий узел списка:
+    d_t * next{nullptr};
 };
-
-template <size_t M, size_t N, typename T>
-void print_other(T (&matrix)[M][N]) 
-{
-    for (size_t i = 0; i < M; i++)
-    {
-        for (size_t j = 0; j < N; j++)
-        {
-            std::cout << matrix[i][j] << "\t";
-        }
-        std::cout << "\n";
-    }
-}
-
-template <size_t Num,typename Type>
-void
-print(
-    d_t<Type> (&array)[Num])
-{
-    for (size_t i = 0; i < Num; i++)
-    {
-        std::cout << array[i].x << " ";
-    }
-}
 
 int main(int argc, char const *argv[])
 {
-    d_t<std::string> arr [5] = {{"10"}, {"20"}, {"30"}, {"40"}, {"50"}};
-    print(arr);
-
-    assert();
-
-    d_t<int> * head = new d_t<int> {10};
-
-    head->next = new d_t<int> {20};
-
-    for(
-        d_t<int> * current = head; 
-        current; 
-        current = current->next)
+    // само представление списка в программе тоже является ссылкой на узел для совместимости:
+    d_t * head = new d_t {10};
+    // инициализация следующего узла списка через первый узел head:
+    head->next = new d_t {20};
+    // итерирование по списку, используя связи между узлами:
+    for( 
+        d_t * current = head; // используя временную ссылку, инициализируя ее адресом начала списка
+        current; // можно перебирать элементы списка до тех пор, пока не встретится последний элемент
+        current = current->next) // поле next последнего элемента списка пусто, поэтому цикл завершится
     {
         printf("%d ", current->x);
     }
-
+    // тот же принцип можно использовать для очищения списка:
     while(head)
     {
-        d_t<int> * cur = head;
+        d_t * cur = head;
         head = head->next;
         delete cur;
     }
