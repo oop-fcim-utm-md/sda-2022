@@ -10,6 +10,8 @@ struct node
 
 typedef node *pnode;
 
+#define NOT_AN_OPERATOR 100
+
 int priority(char c)
 {
     switch (c)
@@ -21,7 +23,7 @@ int priority(char c)
     case '/':
         return 2;
     }
-    return 100;
+    return NOT_AN_OPERATOR;
 }
 
 pnode make_tree(char expr[], int first, int last)
@@ -36,7 +38,7 @@ pnode make_tree(char expr[], int first, int last)
         tree->right = nullptr;
         return tree;
     }
-    minptr = 100;
+    minptr = NOT_AN_OPERATOR;
     for (i = first; i <= last; i++)
     {
         if (expr[i] == '(')
@@ -59,7 +61,7 @@ pnode make_tree(char expr[], int first, int last)
             k = i;
         }
     }
-    if (minptr == 100 &&
+    if (minptr == NOT_AN_OPERATOR &&
         expr[first] == '(' &&
         expr[last] == ')')
     {
