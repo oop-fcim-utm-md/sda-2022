@@ -22,7 +22,7 @@ void print(const list_node *head)
         std::cout << head->name << " ";
         print(head->next); // рекурсивный вызов только в том случае, если в head действительный адрес узла
     }
-    // если узел не содержит действительный адрес, цепочка рекурсивных вызовов прервется 
+    // если узел не содержит действительный адрес, цепочка рекурсивных вызовов прервется
 }
 
 void clear(list_node *head)
@@ -30,15 +30,8 @@ void clear(list_node *head)
     if (head)
     {
         clear(head->next); // рекурсивный вызов, чтобы начать удалять узлы с конца
-        delete head; // первый раз delete будет вызыван на том узле, у которого next == null
+        delete head;       // первый раз delete будет вызыван на том узле, у которого next == null
     }
-}
-
-int length(const list_node *head, const unsigned int acc)
-{
-    if (!head) // если это конец списка, значит счетчик можно больше не увеличивать
-        return acc;
-    return length(head->next, acc + 1); // рекурсивный вызов с инкрементированной переменной-счетчиком
 }
 
 // узел деререва с двумя дочерними узлами справа и слева
@@ -57,7 +50,7 @@ void insert(tree_node *&node, std::string s)
         node->name = s;
         return;
     }
-    // в противном случае нужно проверить, в какую сторону двигаться по дереву 
+    // в противном случае нужно проверить, в какую сторону двигаться по дереву
     if (s <= node->name)
     {
         insert(node->left, s); // для сортировки по возрастанию - влево
@@ -74,10 +67,6 @@ int main(int argc, char const *argv[])
     list_node *head = new list_node("A", new list_node("B", new list_node("C", new list_node("D"))));
 
     print(head);
-    std::cout << "\n"
-              << length(head, 0)
-              << "\n";
-
     clear(head);
 
     std::vector<std::string> v = {"N", "O", "J", "M", "L", "A", "D", "F", "G", "B"};
