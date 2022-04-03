@@ -44,9 +44,9 @@ unsigned int aux(const list_node *head, const unsigned int acc)
     return aux(head->next, acc + 1); // иначе длина списка равна единице плюс текущее значение счетчика
 }
 
-unsigned int length_tail(list_node *l)
+unsigned int length_tail(const list_node *head)
 {
-    return aux(l, 0);
+    return aux(head, 0);
 }
 
 int main(int argc, char const *argv[])
