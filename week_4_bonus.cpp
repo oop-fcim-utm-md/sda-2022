@@ -1,9 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <assert.h>
-#include <algorithm>
 #include <iostream>
 #include <string>
-#include <utility>
 #include <vector>
 
 typedef std::string data;
